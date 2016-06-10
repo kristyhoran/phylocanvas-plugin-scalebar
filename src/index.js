@@ -29,7 +29,7 @@ function drawScalebar() {
   this.canvas.closePath();
 
   const startLabel = '0';
-  const endLabel = (SCALEBAR_WIDTH / this.branchScalar * this.zoom).toFixed(6);
+  const endLabel = (SCALEBAR_WIDTH / this.branchScalar / this.zoom).toFixed(6);
   const startLabelSize = this.canvas.measureText(startLabel);
   const endLabelSize = this.canvas.measureText(endLabel);
 
