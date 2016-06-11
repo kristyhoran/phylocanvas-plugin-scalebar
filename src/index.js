@@ -11,6 +11,8 @@ function drawScalebar() {
   const x = centre - width / 2;
   const y = bottom - height * 2;
 
+  this.canvas.clearRect(x, y, width, height * 2);
+
   this.canvas.font = `${Math.max(height, 1)}px Sans-serif`;
   this.canvas.fillStyle = 'black';
   this.canvas.strokeStyle = 'black';
@@ -33,10 +35,9 @@ function drawScalebar() {
   const startLabelSize = this.canvas.measureText(startLabel);
   const endLabelSize = this.canvas.measureText(endLabel);
 
-  this.canvas.fillText(startLabel,
-    x - startLabelSize.width / 2, y + height);
+  this.canvas.fillText(startLabel, x - startLabelSize.width / 2, y + height);
   this.canvas.fillText(endLabel,
-    x + width - endLabelSize.width / 2, y + height);
+    x + width - endLabelSize.width + startLabelSize.width / 2, y + height);
 }
 
 export default function historyPlugin(decorate) {
