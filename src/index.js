@@ -11,7 +11,7 @@ const DEFAULTS = {
   font: '16px Sans-serif',
   textBaseline: 'top',
   textAlign: 'center',
-  digits: 2,
+  digits: 16,
   position: {
     bottom: 0,
     centre: 0,
@@ -75,7 +75,8 @@ function drawScalebar() {
   cxt.stroke();
   cxt.closePath();
 
-  const label = (width / branchScalar / zoom).toFixed(scalebar.digits);
+  const scale = (width / branchScalar / zoom);
+  const label = parseFloat(scale.toFixed(scalebar.digits)).toString();
   cxt.fillText(label, x + width / 2, y + height);
 
   cxt.restore();
