@@ -11,7 +11,7 @@ const DEFAULTS = {
   font: '16px Sans-serif',
   textBaseline: 'top',
   textAlign: 'center',
-  digits: 16,
+  digits: 2,
   position: {
     bottom: 0,
     centre: 0,
@@ -22,6 +22,8 @@ const INVALID_HORIZONTAL_POSITION = 'Invalid horizontal position specified' +
   'Supported values are `left`, `centre`, or `right`';
 const INVALID_VERTICAL_POSITION = 'Invalid vertical position specified' +
   'Supported values are `top`, `middle`, or `bottom`';
+
+const LOG10 = Math.log(10);
 
 function drawScalebar() {
   const { scalebar, offsetx, offsety, zoom, branchScalar } = this;
@@ -75,8 +77,9 @@ function drawScalebar() {
   cxt.stroke();
   cxt.closePath();
 
-  const scale = (width / branchScalar / zoom);
-  const label = parseFloat(scale.toFixed(scalebar.digits)).toString();
+  const scale = width / branchScalar / zoom;
+  const minDigitis = parseInt(Math.abs(Math.log(scale) / LOG10), 10);
+  const label = scale.toFixed(minDigitis + scalebar.digits);
   cxt.fillText(label, x + width / 2, y + height);
 
   cxt.restore();
