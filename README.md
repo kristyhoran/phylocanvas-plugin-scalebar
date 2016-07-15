@@ -14,6 +14,7 @@ Phylocanvas.plugin(scalebarPlugin);
 Phylocanvas.createTree('id', {
   // config defaults
   scalebar: {
+    active: true,
     width: 100,
     height: 20,
     fillStyle: 'black',
@@ -34,6 +35,7 @@ Phylocanvas.createTree('id', {
 ## Options
 
 A list of available options:
+* `active`: Show the scale-bar. The default is `true`.
 * `width`: The width of the scale-bar in pixels. The default is `100` pixels.
 * `height`: The height of the scale-bar in pixels. The default is `20` pixels.
 * `lineWidth`: The thickness of scale-bar lines in space units. The default is `1` pixel.
