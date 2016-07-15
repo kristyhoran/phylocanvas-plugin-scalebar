@@ -33,8 +33,6 @@ function drawScalebar() {
   const pixelRatio = getPixelRatio(cxt);
 
   cxt.save();
-  cxt.scale(1 / zoom, 1 / zoom);
-  cxt.translate(-offsetx * pixelRatio, -offsety * pixelRatio);
 
   let x = 0;
   if (typeof position.left !== 'undefined') {
