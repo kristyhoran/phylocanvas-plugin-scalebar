@@ -41,6 +41,6 @@ A list of available options:
 * `fillStyle`: Specifies the colour or style to use for scale-bar label. The default is `#000` (black).
 * `font`: Specifies the text style used when drawing scale-bar label. The default is `16px Sans-serif`.
 * `digits`: The number of digits to appear after the decimal point; this may be a value between 0 and 20, inclusive. The default is `2` digits.
-* `position`: Specifies the scale-bar position on the canvas (the default value is `{ bottom: 10, left: 10, }`), it includes two position components (vertical and horizontal):
-  * supported vertical position values are `top`, `middle`, or `bottom`',
-  * supported horizontal position values are `left`, `centre`, or `right`'.
+* `position`: Specifies the scale-bar position on the canvas. Two keys should be provided, one for the vertical position and one for the horizontal position. The default value is `{ bottom: 10, left: 10 }`.
+  * Supported vertical position keys are `top`, `middle`, or `bottom`.
+  * Supported horizontal position keys are `left`, `centre`, or `right`.
