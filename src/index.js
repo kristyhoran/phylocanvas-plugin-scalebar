@@ -1,6 +1,7 @@
-import { Tree, utils } from 'phylocanvas';
+import { Tree } from 'phylocanvas';
 
 const DEFAULTS = {
+  active: true,
   width: 100,
   height: 20,
   fillStyle: 'black',
@@ -64,10 +65,10 @@ function drawScalebar() {
   cxt.moveTo(x, y);
   cxt.lineTo(x + width, y);
   cxt.stroke();
-  cxt.moveTo(x, y - lineWidth);
+  cxt.moveTo(x, y);
   cxt.lineTo(x, y + height);
   cxt.stroke();
-  cxt.moveTo(x + width, y - lineWidth);
+  cxt.moveTo(x + width, y);
   cxt.lineTo(x + width, y + height);
   cxt.stroke();
   cxt.closePath();
@@ -89,6 +90,8 @@ export default function plugin(decorate) {
   });
   decorate(Tree, 'draw', function (delegate, args) {
     delegate.apply(this, args);
-    drawScalebar.apply(this);
+    if (this.scalebar.active) {
+      drawScalebar.apply(this);
+    }
   });
 }

@@ -6,7 +6,9 @@ import scalebarPlugin from '../src';
 Phylocanvas.plugin(scalebarPlugin);
 
 const tree = Phylocanvas.createTree('phylocanvas', {
-  scale: {},
+  scalebar: {
+    // active: false,
+  },
   padding: 10,
 });
 
