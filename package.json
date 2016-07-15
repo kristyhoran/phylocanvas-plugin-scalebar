@@ -37,5 +37,6 @@
     "dist",
     "*.md",
     "unstyled.js"
-  ]
+  ],
+  "version": "1.0.0"
 }
