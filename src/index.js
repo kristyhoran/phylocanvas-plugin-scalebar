@@ -1,20 +1,18 @@
 import { Tree, utils } from 'phylocanvas';
 
-const { getPixelRatio } = utils.canvas;
-
 const DEFAULTS = {
-  width: 200,
+  width: 100,
   height: 20,
   fillStyle: 'black',
   strokeStyle: 'black',
-  lineWidth: 2,
+  lineWidth: 1,
   font: '16px Sans-serif',
-  textBaseline: 'top',
+  textBaseline: 'bottom',
   textAlign: 'center',
   digits: 2,
   position: {
-    bottom: 0,
-    centre: 0,
+    bottom: 10,
+    left: 10,
   },
 };
 
@@ -26,11 +24,10 @@ const INVALID_VERTICAL_POSITION = 'Invalid vertical position specified' +
 const LOG10 = Math.log(10);
 
 function drawScalebar() {
-  const { scalebar, offsetx, offsety, zoom, branchScalar } = this;
-  const { width, height, position } = scalebar;
+  const { scalebar, zoom, branchScalar } = this;
+  const { width, height, position, lineWidth } = scalebar;
   const cxt = this.canvas;
   const canvas = cxt.canvas;
-  const pixelRatio = getPixelRatio(cxt);
 
   cxt.save();
 
@@ -50,27 +47,27 @@ function drawScalebar() {
   } else if (typeof position.middle !== 'undefined') {
     y = (canvas.height / 2) - height + position.middle;
   } else if (typeof position.bottom !== 'undefined') {
-    y = canvas.height - (height * 2) - position.bottom;
+    y = canvas.height - height - position.bottom;
   } else {
     this.loadError(INVALID_VERTICAL_POSITION);
   }
-  cxt.clearRect(x, y, width, height * 2);
+  cxt.clearRect(x, y, width, height);
 
   cxt.font = scalebar.font;
   cxt.fillStyle = scalebar.fillStyle;
   cxt.strokeStyle = scalebar.strokeStyle;
-  cxt.lineWidth = scalebar.lineWidth;
+  cxt.lineWidth = lineWidth;
   cxt.textBaseline = scalebar.textBaseline;
   cxt.textAlign = scalebar.textAlign;
 
   cxt.beginPath();
-  cxt.moveTo(x, y + height / 2);
-  cxt.lineTo(x + width, y + height / 2);
-  cxt.stroke();
   cxt.moveTo(x, y);
+  cxt.lineTo(x + width, y);
+  cxt.stroke();
+  cxt.moveTo(x, y - lineWidth);
   cxt.lineTo(x, y + height);
   cxt.stroke();
-  cxt.moveTo(x + width, y);
+  cxt.moveTo(x + width, y - lineWidth);
   cxt.lineTo(x + width, y + height);
   cxt.stroke();
   cxt.closePath();
