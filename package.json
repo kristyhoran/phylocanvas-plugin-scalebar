@@ -1,6 +1,6 @@
 {
   "name": "phylocanvas-plugin-scalebar",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Visual scale-bar for Phylocanvas",
   "main": "dist/index.js",
   "scripts": {
