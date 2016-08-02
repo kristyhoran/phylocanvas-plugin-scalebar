@@ -1,4 +1,6 @@
-import { Tree } from 'phylocanvas';
+import { Tree, utils } from 'phylocanvas';
+
+const { getPixelRatio } = utils.canvas;
 
 const DEFAULTS = {
   active: true,
@@ -7,7 +9,8 @@ const DEFAULTS = {
   fillStyle: 'black',
   strokeStyle: 'black',
   lineWidth: 1,
-  font: '16px Sans-serif',
+  fontFamily: 'Sans-serif',
+  fontSize: 16,
   textBaseline: 'bottom',
   textAlign: 'center',
   digits: 2,
@@ -26,9 +29,14 @@ const LOG10 = Math.log(10);
 
 function drawScalebar() {
   const { scalebar, zoom, branchScalar } = this;
-  const { width, height, position, lineWidth } = scalebar;
+  const { position } = scalebar;
   const cxt = this.canvas;
   const canvas = cxt.canvas;
+  const pixelRatio = getPixelRatio(cxt);
+  const width = pixelRatio * scalebar.width;
+  const height = pixelRatio * scalebar.height;
+  const lineWidth = pixelRatio * scalebar.lineWidth;
+  const fontSize = pixelRatio * scalebar.fontSize;
 
   cxt.save();
 
@@ -54,7 +62,7 @@ function drawScalebar() {
   }
   cxt.clearRect(x, y, width, height);
 
-  cxt.font = scalebar.font;
+  cxt.font = `${fontSize}px ${scalebar.fontFamily}`;
   cxt.fillStyle = scalebar.fillStyle;
   cxt.strokeStyle = scalebar.strokeStyle;
   cxt.lineWidth = lineWidth;
